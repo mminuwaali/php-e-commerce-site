@@ -6,7 +6,7 @@
     <title>Document</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.js')
+    @vite('resources/js/app.js')
     @vite('resources/css/app.css')
 </head>
 
@@ -59,7 +59,7 @@
     <main class="w-screen flex flex-col gap-8 px-8 md:px-16 my-4 h-auto">
         @yield('content')
     </main>
-    <footer class="w-screen py-12 bg-green-200 px-8 md:px-16 flex items-center justify-between">
+    <footer class="w-screen py-12 bg-green-200 px-8 md:px-16 flex  items-center justify-between">
         <a href="{{ route('index') }}">
             <h1 class="text-gray-500 font-bold text-lg flex items-center">
                 <span class="uppercase text-3xl text-green-900">emy</span>
