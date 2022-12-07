@@ -15,9 +15,11 @@
 
 <body>
     @include('component.modal')
-    <section class="w-screen h-screen flex flex-col" onclick="toggleAllInputs()">
+    <section class="w-screen h-screen flex flex-col">
         <header class="w-screen flex px-8 py-4 items-center justify-between ap-4 bg-gray-800">
-            <h1 class="uppercase text-green-500 font-black text-md md:text-lg">mimi-shop</h1>
+            <a href="{{ route('index') }}">
+                <h1 class="uppercase text-green-500 font-black text-md md:text-lg">mimi-shop</h1>
+            </a>
             <nav class="flex gap-4 items-center justify-center"></nav>
         </header>
         <main class="grow w-full h-full flex flex-col-reverse md:flex-row bg-white">

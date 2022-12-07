@@ -16,8 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('admin.table.product.index', compact("products"));
+        $page = 12;
+        $products = Product::latest()->paginate($page);
+        return view('admin.table.product.index', compact("products"))->with('i', (request()->input('page', 1) - 1) * $page);
     }
 
     /**
@@ -39,26 +40,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $this->validate($request, [
             "description" => "required",
+            "image" => "required|image",
             "name" => "required|max:100",
-            "amount" => "required|integer",
-            "image" => "required|image|mimes:png,jpg,jpeg|max:4096"
+            "price" => "required|integer|min:0",
+            "discount" => "required|integer|max:100|min:0",
         ]);
 
+        $category = Category::find($request->category);
         $imgName = time() . "." . $request->image->extension();
         $request->image->move(public_path('images/products'), $imgName);
 
-        Product::created([
-            "name" => $request->name,
-            "price" => $request->price,
-            "discount" => $request->discount,
-            "description" => $request->description,
-            "image" => "images/products" . $imgName,
-        ]);
+        $product = Product::create([...$request->all(), "image" => "images/products/$imgName"]);
 
-        Product::create(...$request->only("name", "amount", "description"));
+        // $product->category_id->associate($category);
+        $product->save();
+
+        return back()->with('general-status', "$request->name has been created");
+
+        // Product::create(...$request->only("name", "amount", "description"));
     }
 
     /**
@@ -69,7 +71,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin.table.product.show', compact('product'));
     }
 
     /**
@@ -80,7 +82,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view("admin.table.product.edit", compact("product", "categories"));
     }
 
     /**
@@ -92,7 +95,23 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        // dd($product);
+        $this->validate($request, [
+            "image" => "image",
+            "description" => "required",
+            "name" => "required|max:100",
+            "price" => "required|integer|min:0",
+            "discount" => "required|integer|max:100|min:0",
+        ]);
+
+        $imgName = $product->image;
+        if ($request->image) {
+            $imgName = time() . "." . $request->image->extension();
+            $request->image->move(public_path('images/products'), $imgName);
+        };
+
+        $product->update([...$request->all(), "image" => "images/products/$imgName"]);
+        return redirect()->route('admin.product.index')->with('general-status', "$product->name has been updated");
     }
 
     /**

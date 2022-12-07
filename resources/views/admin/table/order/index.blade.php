@@ -15,12 +15,11 @@
                     <span class="w-8"><input type="checkbox" name="" id=""></span>
                     <span class="w-full">{{ $product->name }}</span>
                     <span class="w-1/3 text-blue-300 underline lowercase flex gap-2">
-                        <form action="{{ route('admin.product.destroy', ['product' => $product]) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" style="font-variant: small-caps;" class="underline">delete</button>
-                        </form>
-                        <a href="{{ route('admin.product.edit', ['product' => $product]) }}"
+                        <a href="{{ route('admin.category.destroy', ['category' => $category]) }}"
+                            style="font-variant: small-caps;">
+                            delete
+                        </a>
+                        <a href="{{ route('admin.category.edit', ['category' => $category]) }}"
                             style="font-variant: small-caps;">
                             edit
                         </a>

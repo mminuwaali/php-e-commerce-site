@@ -20,10 +20,6 @@
                             @method('delete')
                             <button type="submit" style="font-variant: small-caps;" class="underline">delete</button>
                         </form>
-                        {{-- <a href="{{ route('admin.category.destroy', ['category' => $category]) }}"
-                            style="font-variant: small-caps;">
-                            delete
-                        </a> --}}
                         <a href="{{ route('admin.category.edit', ['category' => $category]) }}"
                             style="font-variant: small-caps;">
                             edit
@@ -31,19 +27,9 @@
                     </span>
                 </div>
             @endforeach
-            <div class="w-full flex items-center capitalize py-2 px-4 border-t-2 border-t-black">
-                <span class="w-1/4 flex items-center justify-start">
-                    <a href="{{ route('admin.category.create') }}"
-                        class="bg-blue-500 text-white font-bold flex items-center justify-center px-6 py-1 rounded hover:brightness-200">
-                        create
-                    </a>
-                </span>
-                <span class="flex items-center justify-end w-full gap-4 text-white lowercase"
-                    style="font-variant: small-caps;">
-                    <a href="#" class="bg-gray-800 px-4 flex items-center justify-center rounded">prev</a>
-                    <a href="#" class="bg-gray-800 px-4 flex items-center justify-center rounded">next</a>
-                </span>
+            <div class="w-full flex items-center capitalize py-2 px-4 border-t-2 border-t-black -mb-4">
             </div>
+            {{ $categories->links() }}
         </div>
     </div>
 @endsection

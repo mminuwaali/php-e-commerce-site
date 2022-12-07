@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Subscribe;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
@@ -29,7 +28,7 @@ class MainController extends Controller
     public function category(Category $category)
     {
         $categories = Category::all();
-        $products = Category::find($category)->products;
+        $products = $categories; // Category::find($category)->products;
         return view('page.category', compact("products", "categories"));
     }
 
@@ -38,12 +37,11 @@ class MainController extends Controller
         return view('page.product', compact("product"));
     }
 
-    public function subscribe(Request $req)
+    public function subscribe(Request $request)
     {
-        $req->validate(['email' => 'required|email']);
+        $request->validate(['email' => 'required|email']);
 
-        // Subscribe::create(["email" => $req->email]);
-
+        $present = Subscribe::firstOrCreate(['email' => $request->email]);
         return redirect()->back()->with('general-status', 'Subscribed successfully');
     }
 

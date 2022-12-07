@@ -10,7 +10,8 @@
         @for ($i = 1; $i <= 3; $i++)
             <div
                 class="transition-all grow shrink-0 bg-black py-14 md:py-10 p-10 flex flex-col items-center md:items-start justify-center w-full gap-2 md:gap-10 relative -translate-x-[calc(100%*var(--x))]">
-                <img src="{{ url('/images/bannar.jpg') }}" alt="" class="absolute w-full h-full top-0 left-0 z-0" />
+                <img src="{{ url('/images/products/1670423010.jpg') }}" alt=""
+                    class="absolute w-full h-full top-0 left-0 z-0" />
                 <h2
                     class="text-[clamp(1.4em,5vw,5em)] w-[max(10em,50%)] capitalize leading-[1] font-bold text-center md:text-left z-10">
                     a new online shop experience</h2>
@@ -36,8 +37,8 @@
         @forelse ($products as $product)
             <div class="w-64 h-80 flex flex-col shadow rounded">
                 <div class="grow bg-blue-300 relative">
-                    <img src="{{ url('/images/products/product-' . $i % 8 + 1 . '.jpg') }}" alt=""
-                        class="w-full h-full object-cover absolute" loading="lazy" />
+                    <img src="{{ url($product->image) }}" alt="" class="w-full h-full object-cover absolute"
+                        loading="lazy" />
                 </div>
                 <div class="w-full px-4 py-8 flex flex-col items-start justify-center">
                     <a href="{{ route('product', ['product' => $product]) }}"
