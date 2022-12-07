@@ -2,9 +2,9 @@
 
 
 @section('content')
-    <form action="{{ route('admin.category.update', ["category"=> $category]) }}" method="put" class="p-8 shadow m-auto flex flex-col gap-4">
+    <form action="{{ route('admin.category.update', ["category"=> $category]) }}" method="POST" class="p-8 shadow m-auto flex flex-col gap-4">
         @csrf
-        @method('update')
+        @method('PUT')
         <div class="w-full p-4 flex items-center justify-start capitalize font-bold">
             <h2 class="text-lg" style="font-variant: small-caps">edit {{ $category->name }}</h2>
         </div>

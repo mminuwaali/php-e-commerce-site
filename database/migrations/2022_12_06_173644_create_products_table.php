@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text("description");
             $table->foreignIdFor(Category::class);
             $table->integer("discount")->default(0);
+            $table->integer("quantity")->default(0);
         });
     }
 

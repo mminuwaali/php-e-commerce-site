@@ -22,15 +22,8 @@
                         <img src="assets/images/logo/logo.svg" alt="logo" class="w-full" />
                     </a>
                 </div>
-                <div class="flex w-full items-center justify-between px-4">
+                <div class="flex w-full items-center justify-between px-4 gap-4">
                     <div>
-                        <button @click="navbarOpen = !navbarOpen" :class="navbarOpen && 'navbarTogglerActive'"
-                            id="navbarToggler"
-                            class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden">
-                            <span class="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
-                            <span class="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
-                            <span class="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
-                        </button>
                         <nav :class="!navbarOpen && 'hidden'" id="navbarCollapse"
                             class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white py-5 px-6 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none z-50">
                             <ul class="blcok lg:flex capitalize">
@@ -47,15 +40,15 @@
                                     </a>
                                 </li>
                                 <li>
-                                    {{-- <a href="{{ route('category') }}"
+                                    <a href="{{ route('category') }}"
                                         class="flex py-2 text-base font-medium text-dark hover:text-primary lg:ml-12 lg:inline-flex">
                                         category
-                                    </a> --}}
+                                    </a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                    <div class="hidden md:flex items-center jusitfy-center gap-4">
+                    <div class="hidden md:flex items-center jusitfy-center gap-4 ml-auto mr-4">
                         @auth
                             <a href="{{ route('index') }}"
                                 style="font-variant: small-caps;">{{ auth()->user()->username }}</a>
@@ -72,7 +65,7 @@
                             </a>
                         @endguest
                     </div>
-                    <div class="flex gap-4 items-center justify-center">
+                    <div class="flex gap-4 items-center justify-center ml-auto md:ml-0">
                         <a href="{{ route('cart') }}" style="font-variant: small-caps;">
                             cart [<i class="not-italic font-thin">20</i>]
                             <i class="fa fa-home w-8 h-8 bg-black"></i>
@@ -81,6 +74,11 @@
                             fav [<i class="not-italic font-thin">40</i>]
                         </a>
                     </div>
+                    <button
+                        class="w-6 relative md:hidden flex flex-col justify-center gap-1 before:w-full before:h-1 before:bg-black after:w-full after:h-1 after:bg-black"
+                        @click="navbarOpen = !navbarOpen" :class="navbarOpen && 'navbarTogglerActive before:absolute before:rotate-45 after:absolute after:-rotate-45'"
+                        id="navbarToggler">
+                    </button>
                 </div>
             </div>
         </div>

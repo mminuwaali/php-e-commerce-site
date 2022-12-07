@@ -17,8 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('admin.table.category.index', compact("categories"));
+        $page = 12;
+        $categories = Category::latest()->paginate($page);
+        return view('admin.table.category.index', compact("categories"))->with('i', (request()->input('page', 1) - 1) * $page);
     }
 
     /**
@@ -40,13 +41,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, ["name" => "required"]);
+        Category::create($request->all());
 
-        $category = new Category;
-        $category->name = $request->name;
-
-        $category->save();
-
-        return back()->with('general-status', "category $category->name has been created");
+        return back()->with('general-status', "category $request->name has been created");
     }
 
     /**
@@ -57,8 +54,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $products = Category::find($category);
-        return redirect()->route('admin.category.index');
+        return view('admin.table.category.show', compact('category'));
     }
 
     /**
@@ -82,15 +78,9 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $this->validate($request, ["name" => "required"]);
+        $category->update($request->all());
 
-        $category = Category::find($category);
-
-        dd($category);
-
-        $category->name = $request->name;
-        $category->save();
-
-        return redirect()->route('admin.category.index')->with('general-status', "category $category->name has been updated");
+        return redirect()->route('admin.category.index')->with('general-status', "$category->name has been updated");
     }
 
     /**
@@ -102,6 +92,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return back()->with('general-status', "$category->name has been deleted successfully");
+        return redirect()->route('admin.category.index')->with('general-status', "category $category->name has been deleted");
     }
 }
