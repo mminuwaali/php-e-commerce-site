@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Table;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.table.product.create');
+        $categories = Category::all();
+        return view('admin.table.product.create', compact("categories"));
     }
 
     /**
@@ -37,10 +39,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $this->validate($request, [
             "description" => "required",
             "name" => "required|max:100",
             "amount" => "required|integer",
+            "image" => "required|image|mimes:png,jpg,jpeg|max:4096"
+        ]);
+
+        $imgName = time() . "." . $request->image->extension();
+        $request->image->move(public_path('images/products'), $imgName);
+
+        Product::created([
+            "name" => $request->name,
+            "price" => $request->price,
+            "discount" => $request->discount,
+            "description" => $request->description,
+            "image" => "images/products" . $imgName,
         ]);
 
         Product::create(...$request->only("name", "amount", "description"));

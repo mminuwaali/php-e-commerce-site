@@ -28,7 +28,7 @@
             @endforeach
             <div class="w-full flex items-center capitalize py-2 px-4 border-t-2 border-t-black">
                 <span class="w-1/4 flex items-center justify-start">
-                    <a href="{{ route('admin.category.create') }}"
+                    <a href="{{ route('admin.product.create') }}"
                         class="bg-blue-500 text-white font-bold flex items-center justify-center px-6 py-1 rounded hover:brightness-200">
                         create
                     </a>

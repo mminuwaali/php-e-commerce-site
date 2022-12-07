@@ -15,7 +15,7 @@
             <div class="flex flex-col items-start justify-center basis-80 gap-1 grow">
                 <label for="email" class="capitalize font-bold ml-2">email</label>
                 <input type="email" name="email" required value="{{ old('email') }}"
-                    class="placeholder:capitalize w-full p-2 rounded bg-gray-100 outline-none @error('email') border-2 border-red-500 @enderror"
+                    class="placeholder:capitalize w-full p-2 rounded bg-gray outline-none @error('email') border-2 border-red-500 @enderror"
                     placeholder="enter a valid email" />
                 @error('email')
                     <span class="text-red 800 capitalize italic text-sm">{{ $message }}</span>
@@ -24,7 +24,7 @@
             <div class="flex flex-col items-start justify-center basis-80 gap-1 grow">
                 <label for="password" class="capitalize font-bold ml-2">password</label>
                 <input type="password" name="password" required
-                    class="placeholder:capitalize w-full p-2 rounded bg-gray-100 outline-none @error('password') border-2 border-red-500 @enderror"
+                    class="placeholder:capitalize w-full p-2 rounded bg-gray outline-none @error('password') border-2 border-red-500 @enderror"
                     placeholder="enter a strong password" />
                 @error('password')
                     <span class="text-red 800 capitalize italic text-sm">{{ $message }}</span>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <button
-            class="px-8 py-2 uppecase font-bold border-2 w-56 self-center uppercase rounded-full text-gray-400 hover:bg-gray-400 hover:text-white">login</button>
+            class="px-8 py-2 uppecase font-bold border-2 w-56 self-center uppercase rounded-full text-gray-400 hover:bg-black hover:text-white">login</button>
         <a href="{{ route('register.index') }}" class="text-gray-600 font-thinbold">Don't have an account? <span
                 class="text-green-500">sign up</span> here</a>
     </form>

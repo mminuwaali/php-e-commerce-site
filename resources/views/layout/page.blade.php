@@ -32,7 +32,7 @@
                             <span class="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
                         </button>
                         <nav :class="!navbarOpen && 'hidden'" id="navbarCollapse"
-                            class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white py-5 px-6 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none">
+                            class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white py-5 px-6 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none z-50">
                             <ul class="blcok lg:flex capitalize">
                                 <li>
                                     <a href="{{ route('index') }}"
@@ -57,9 +57,9 @@
                     </div>
                     <div class="hidden md:flex items-center jusitfy-center gap-4">
                         @auth
-                        <div class="flex gap-4 items-center justify-center">
-                            <a href="#"><i class="fa fa-cart w-8 h-8 bg-black"></i> Cart</a>
-                        </div>
+                            <a href="{{ route('index') }}"
+                                style="font-variant: small-caps;">{{ auth()->user()->username }}</a>
+                            <a href="{{ route('logout') }}" style="font-variant: small-caps;">log out</a>
                         @endauth
                         @guest
                             <a href="{{ route('login.index') }}"
@@ -67,10 +67,19 @@
                                 Login
                             </a>
                             <a href="{{ route('register.index') }}"
-                                class="px-10 grow-0 flex items-center justify-center rounded-lg bg-blue-500 text-white">
+                                class="px-10 py-1 grow-0 flex items-center justify-center rounded-lg bg-blue-500 text-white">
                                 Sign Up
                             </a>
                         @endguest
+                    </div>
+                    <div class="flex gap-4 items-center justify-center">
+                        <a href="{{ route('cart') }}" style="font-variant: small-caps;">
+                            cart [<i class="not-italic font-thin">20</i>]
+                            <i class="fa fa-home w-8 h-8 bg-black"></i>
+                        </a>
+                        <a href="{{ route('index') }}" style="font-variant: small-caps;">
+                            fav [<i class="not-italic font-thin">40</i>]
+                        </a>
                     </div>
                 </div>
             </div>
