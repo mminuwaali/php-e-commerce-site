@@ -12,7 +12,8 @@ class MainController extends Controller
 {
     public function index()
     {
-        return view('page.index');
+        $products = Product::all();
+        return view('page.index', compact("products"));
     }
 
     public function about()
@@ -25,10 +26,11 @@ class MainController extends Controller
         return view('shopping.checkout');
     }
 
-    public function category()
+    public function category(Category $category)
     {
         $categories = Category::all();
-        return view('page.category', compact("categories"));
+        $products = Category::find($category)->products;
+        return view('page.category', compact("products", "categories"));
     }
 
     public function product(Product $product)

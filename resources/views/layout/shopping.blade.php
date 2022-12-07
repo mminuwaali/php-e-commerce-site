@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
+    @vite('resources/js/alpine.min.js')
 </head>
 
 <body>
@@ -48,24 +49,26 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('category') }}"
+                                    {{-- <a href="{{ route('category') }}"
                                         class="flex py-2 text-base font-medium text-dark hover:text-primary lg:ml-12 lg:inline-flex">
                                         category
-                                    </a>
+                                    </a> --}}
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                    <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
-                        <a href="{{ route('index') }}"
-                            class="py-3 px-7 text-base font-medium text-dark hover:text-primary">
-                            Login
-                        </a>
-                        <a href="{{ route('index') }}"
-                            class="px-10 grow-0 flex items-center justify-center rounded-lg bg-blue-500 text-white">
-                            Sign Up
-                        </a>
-                    </div>
+                    @guest
+                        <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+                            <a href="{{ route('index') }}"
+                                class="py-3 px-7 text-base font-medium text-dark hover:text-primary">
+                                Login
+                            </a>
+                            <a href="{{ route('index') }}"
+                                class="px-10 grow-0 flex items-center justify-center rounded-lg bg-blue-500 text-white">
+                                Sign Up
+                            </a>
+                        </div>
+                    @endguest
                 </div>
             </div>
         </div>

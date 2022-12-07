@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
+    @vite('resources/js/alpine.min.js')
 </head>
 
 <body class="w-screen">
@@ -46,10 +47,10 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('category') }}"
+                                    {{-- <a href="{{ route('category') }}"
                                         class="flex py-2 text-base font-medium text-dark hover:text-primary lg:ml-12 lg:inline-flex">
                                         category
-                                    </a>
+                                    </a> --}}
                                 </li>
                             </ul>
                         </nav>

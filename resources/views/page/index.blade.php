@@ -32,28 +32,32 @@
 
     <!-- products section -->
     <section id="products" class="flex flex-wrap justify-center gap-8">
-        @for ($i = 1; $i <= 12; $i++)
+
+        @forelse ($products as $product)
             <div class="w-64 h-80 flex flex-col shadow rounded">
                 <div class="grow bg-blue-300 relative">
                     <img src="{{ url('/images/products/product-' . $i % 8 + 1 . '.jpg') }}" alt=""
                         class="w-full h-full object-cover absolute" loading="lazy" />
                 </div>
                 <div class="w-full px-4 py-8 flex flex-col items-start justify-center">
-                    <a href="{{ route('product', ['product' => $i]) }}" class="capitalize font-bold text-gray-500 text-md">
-                        product number {{ $i }}
+                    <a href="{{ route('product', ['product' => $product]) }}"
+                        class="capitalize font-bold text-gray-500 text-md">
+                        {{ $product->name }}
                     </a>
                     <div class="w-full flex items-center justify-between gap-2">
-                        <span>&dollar; {{ $i + 1 }},000</span>
+                        <span>&dollar; {{ $product->price }}</span>
                     </div>
                     <div class="w-full shrink-0 flex items-center justify-center p-2">
-                        <a href="#"
+                        <a href="{{ route('product', ['product' => $product]) }}"
                             class="w-3/5 bg-blue-500 text-center capitalize font-bold text-white rounded py-1 hover:bg-blue-700 transition-all">
                             add to cart
                         </a>
                     </div>
                 </div>
             </div>
-        @endfor
+        @empty
+            <span class="text-center bg-gray-800 font-bold capitalize text-3xl underline">no products at the moment</span>
+        @endforelse
     </section>
 
     <!-- banner section -->
@@ -82,7 +86,8 @@
         @error('email')
             <span class="text-red 800 capitalize italic text-sm">{{ $message }}</span>
         @enderror
-        <button class="border-2 px-8 py-2 capitalize font-thinbold text-gray-600 border-black hover:bg-black hover:text-white text-2xl">
+        <button
+            class="border-2 px-8 py-2 capitalize font-thinbold text-gray-600 border-black hover:bg-black hover:text-white text-2xl">
             subscribe
         </button>
     </form>

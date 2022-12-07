@@ -21,8 +21,8 @@ use App\Http\Controllers\ShoppingController;
 */
 
 // auth routes
-Route::resource('login', LoginController::class)->only("create", "store");
-Route::resource('register', RegisterController::class)->only("create", "store");
+Route::resource('login', LoginController::class)->only("index", "store");
+Route::resource('register', RegisterController::class)->only("index", "store");
 
 // admin routes
 Route::group(['prefix' => "admin", 'name' => "admin"], function () {
@@ -41,11 +41,11 @@ Route::group(['prefix' => "admin", 'name' => "admin"], function () {
 Route::get('', [MainController::class, 'index'])->name('index');
 Route::get('about', [MainController::class, 'about'])->name('about');
 Route::get('checkout', [MainController::class, 'checkout'])->name('checkout');
-Route::get('category', [MainController::class, 'category'])->name('category');
 Route::post('subscribe', [MainController::class, 'subscribe'])->name('subscribe');
 Route::get('contact', [MainController::class, 'get_contact'])->name('contact.get');
 Route::get('product/{product}', [MainController::class, 'product'])->name('product');
 Route::post('contact', [MainController::class, 'post_contact'])->name('contact.post');
+Route::get('category/{category}', [MainController::class, 'category'])->name('category');
 
 //shopping routes
 Route::get('cart', [ShoppingController::class, 'cart'])->name('cart');

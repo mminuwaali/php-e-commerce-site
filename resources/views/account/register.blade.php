@@ -55,7 +55,7 @@
         </div>
         <button
             class="px-8 py-2 uppecase font-bold border-2 w-56 self-center uppercase rounded-full text-gray-400 hover:bg-gray-400 hover:text-white">register</button>
-        <a href="{{ route('login.create') }}" class="text-gray-600 font-thinbold">Having an account? <span
+        <a href="{{ route('login.index') }}" class="text-gray-600 font-thinbold">Having an account? <span
                 class="text-green-500">sign in</span></a>
     </form>
 @endsection

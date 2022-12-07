@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
+    @vite('resources/js/alpine.min.js')
 </head>
 
 <body>
@@ -46,23 +47,30 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('category') }}"
+                                    {{-- <a href="{{ route('category') }}"
                                         class="flex py-2 text-base font-medium text-dark hover:text-primary lg:ml-12 lg:inline-flex">
                                         category
-                                    </a>
+                                    </a> --}}
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                    <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
-                        <a href="{{ route('login.create') }}"
-                            class="py-3 px-7 text-base font-medium text-dark hover:text-primary">
-                            Login
-                        </a>
-                        <a href="{{ route('register.create') }}"
-                            class="px-10 grow-0 flex items-center justify-center rounded-lg bg-blue-500 text-white">
-                            Sign Up
-                        </a>
+                    <div class="hidden md:flex items-center jusitfy-center gap-4">
+                        @auth
+                        <div class="flex gap-4 items-center justify-center">
+                            <a href="#"><i class="fa fa-cart w-8 h-8 bg-black"></i> Cart</a>
+                        </div>
+                        @endauth
+                        @guest
+                            <a href="{{ route('login.index') }}"
+                                class="py-3 px-7 text-base font-medium text-dark hover:text-primary">
+                                Login
+                            </a>
+                            <a href="{{ route('register.index') }}"
+                                class="px-10 grow-0 flex items-center justify-center rounded-lg bg-blue-500 text-white">
+                                Sign Up
+                            </a>
+                        @endguest
                     </div>
                 </div>
             </div>

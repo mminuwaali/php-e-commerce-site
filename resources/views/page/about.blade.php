@@ -207,11 +207,11 @@
                             The point of using Lorem Ipsum is that it has a more-or-less.
                         </p>
                         <p class="mb-12 text-base text-body-color">
-                            A domain name is one of the first steps to establishing your
+                            {{-- A domain name is one of the first steps to establishing your
                             brand. Secure a consistent brand image with a domain name that
-                            matches your business.
+                            matches your business. --}}
                         </p>
-                        <a href="javascript:void(0)"
+                        <a href="{{ route('contact.get') }}"
                             class="inline-flex items-center justify-center rounded-lg bg-primary py-4 px-10 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
                             Get Started
                         </a>

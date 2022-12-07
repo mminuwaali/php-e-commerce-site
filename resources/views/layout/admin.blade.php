@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
+    @vite('resources/js/alpine.min.js')
 </head>
 
 <body>

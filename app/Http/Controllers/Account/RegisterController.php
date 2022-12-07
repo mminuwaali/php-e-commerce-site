@@ -19,7 +19,7 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index()
     {
         return view('account.register');
     }
@@ -45,6 +45,6 @@ class RegisterController extends Controller
             'name' => $request->name, 'email' => $request->email,
         ]);
 
-        return redirect()->route('login.create')->with('general-status', 'User registered successfully, you can now log in');
+        return redirect()->route('login.index')->with('general-status', 'User registered successfully, you can now log in');
     }
 }
